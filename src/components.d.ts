@@ -6,6 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CotButton {
+    }
+    interface CotTextbox {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +26,18 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCotButtonElement extends Components.CotButton, HTMLStencilElement {
+    }
+    var HTMLCotButtonElement: {
+        prototype: HTMLCotButtonElement;
+        new (): HTMLCotButtonElement;
+    };
+    interface HTMLCotTextboxElement extends Components.CotTextbox, HTMLStencilElement {
+    }
+    var HTMLCotTextboxElement: {
+        prototype: HTMLCotTextboxElement;
+        new (): HTMLCotTextboxElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +45,16 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "cot-button": HTMLCotButtonElement;
+        "cot-textbox": HTMLCotTextboxElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface CotButton {
+    }
+    interface CotTextbox {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +70,8 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "cot-button": CotButton;
+        "cot-textbox": CotTextbox;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +79,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cot-button": LocalJSX.CotButton & JSXBase.HTMLAttributes<HTMLCotButtonElement>;
+            "cot-textbox": LocalJSX.CotTextbox & JSXBase.HTMLAttributes<HTMLCotTextboxElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
