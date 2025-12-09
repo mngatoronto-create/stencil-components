@@ -1,8 +1,13 @@
 import { Config } from '@stencil/core';
+import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'stencil-components',
   outputTargets: [
+    reactOutputTarget({
+      // Relative path to where the React components will be generated
+      outDir: '../react-components/lib/components/stencil-generated/',
+    }),
     {
       type: 'dist',
       esmLoaderPath: '../loader',
